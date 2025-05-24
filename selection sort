@@ -1,0 +1,50 @@
+//bubble sort
+
+#include<stdio.h>
+#include<time.h>
+
+void selectionsort(int ar[],int n){
+    int i,j,temp;
+    int minindex;
+    for (i=0; i<n-1; i++){
+        minindex=i;
+        for (j=i+1; j<n; j++){
+            if (ar[j]<ar[minindex]){
+                minindex=j;
+            }
+        }
+        if(ar[minindex]!=i)
+        {
+            temp=ar[i];
+            ar[i]=ar[minindex];
+            ar[minindex]=temp;
+        }
+    }
+}
+
+int main()
+{
+    int i,n;
+    printf("enter the no of elements:");
+    if (scanf("%d",&n)!=1 || n<=0){
+        printf("invalid");
+        return 1;
+    }
+    int ar[n];
+    printf("enter '%d' elements:",n);
+    for (i=0; i<n; i++){
+        scanf("%d",&ar[i]);
+    }
+    clock_t start= clock();
+    selectionsort(ar,n);
+    clock_t end=clock();
+    double time_sp=(double)(end-start)/CLOCKS_PER_SEC;
+    
+    printf("\nSorted array:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", ar[i]);
+    
+    }
+    printf("time spent:.%6f",time_sp);
+    return 0;
+}
